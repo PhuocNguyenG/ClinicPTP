@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DentalClinic_Database" Class="DentalClinicDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-77RQAH2\THANHOANG;Initial Catalog=DentalClinic_Database;Integrated Security=True" SettingsObjectName="TEST.Properties.Settings" SettingsPropertyName="DentalClinic_DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="AccountId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="passWord" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Account_WorkingStatus" Member="WorkingStatus" ThisKey="AccountId" OtherKey="AccountId" Type="WorkingStatus" />
+      <Association Name="Account_AccountPermision" Member="AccountPermisions" ThisKey="AccountId" OtherKey="AccountId" Type="AccountPermision" />
+      <Association Name="Staff_Account" Member="Staff" ThisKey="StaffId" OtherKey="StaffId" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkingStatus" Member="WorkingStatus">
+    <Type Name="WorkingStatus">
+      <Column Name="WorkingStatusId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccountId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeBegin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Account_WorkingStatus" Member="Account" ThisKey="AccountId" OtherKey="AccountId" Type="Account" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AccountPermision" Member="AccountPermisions">
+    <Type Name="AccountPermision">
+      <Column Name="AccountPermisionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PermisionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Account_AccountPermision" Member="Account" ThisKey="AccountId" OtherKey="AccountId" Type="Account" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Permision_AccountPermision" Member="Permision" ThisKey="PermisionId" OtherKey="PermisionId" Type="Permision" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Appointment" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="AppointmentId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameAppointment" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="scheduleDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="timeBegin" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="timeEnd" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="PatientId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Patient_Appointment" Member="Patient" ThisKey="PatientId" OtherKey="PatientId" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetailPermision" Member="DetailPermisions">
+    <Type Name="DetailPermision">
+      <Column Name="DetailPermisionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PermisionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="acctionCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Permision_DetailPermision" Member="Permision" ThisKey="PermisionId" OtherKey="PermisionId" Type="Permision" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DrugSuppliers" Member="DrugSuppliers">
+    <Type Name="DrugSupplier">
+      <Column Name="DrugSuppliersId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameDrugSuppliers" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="DrugSupplier_TypeMedicine" Member="TypeMedicines" ThisKey="DrugSuppliersId" OtherKey="DrugSuppliersId" Type="TypeMedicine" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Medicine" Member="Medicines">
+    <Type Name="Medicine">
+      <Column Name="MedicineId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameMedicine" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="expirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="unit" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TypeMedicineId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Medicine_PrescriptionMedicine" Member="PrescriptionMedicines" ThisKey="MedicineId" OtherKey="MedicineId" Type="PrescriptionMedicine" />
+      <Association Name="TypeMedicine_Medicine" Member="TypeMedicine" ThisKey="TypeMedicineId" OtherKey="TypeMedicineId" Type="TypeMedicine" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="PatientId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Patient_Appointment" Member="Appointments" ThisKey="PatientId" OtherKey="PatientId" Type="Appointment" />
+      <Association Name="Patient_Prescription" Member="Prescriptions" ThisKey="PatientId" OtherKey="PatientId" Type="Prescription" />
+      <Association Name="Patient_Receipt" Member="Receipts" ThisKey="PatientId" OtherKey="PatientId" Type="Receipt" />
+      <Association Name="Patient_Treatment" Member="Treatments" ThisKey="PatientId" OtherKey="PatientId" Type="Treatment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permision" Member="Permisions">
+    <Type Name="Permision">
+      <Column Name="PermisionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="namePermision" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Permision_AccountPermision" Member="AccountPermisions" ThisKey="PermisionId" OtherKey="PermisionId" Type="AccountPermision" />
+      <Association Name="Permision_DetailPermision" Member="DetailPermisions" ThisKey="PermisionId" OtherKey="PermisionId" Type="DetailPermision" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Position" Member="Positions">
+    <Type Name="Position">
+      <Column Name="PositionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="namePosition" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Position_Staff" Member="Staffs" ThisKey="PositionId" OtherKey="PositionId" Type="Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prescription" Member="Prescriptions">
+    <Type Name="Prescription">
+      <Column Name="PrescriptionId" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="namePrescription" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PatientId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StaffId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Prescription_PrescriptionMedicine" Member="PrescriptionMedicines" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="PrescriptionMedicine" />
+      <Association Name="Patient_Prescription" Member="Patient" ThisKey="PatientId" OtherKey="PatientId" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Staff_Prescription" Member="Staff" ThisKey="StaffId" OtherKey="StaffId" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PrescriptionMedicine" Member="PrescriptionMedicines">
+    <Type Name="PrescriptionMedicine">
+      <Column Name="PrescriptionMedicineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PrescriptionId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MedicineId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Medicine_PrescriptionMedicine" Member="Medicine" ThisKey="MedicineId" OtherKey="MedicineId" Type="Medicine" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Prescription_PrescriptionMedicine" Member="Prescription" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="Prescription" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Receipt" Member="Receipts">
+    <Type Name="Receipt">
+      <Column Name="ReceiptId" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="receiptdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PatientId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StaffId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="statusReceipt" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Patient_Receipt" Member="Patient" ThisKey="PatientId" OtherKey="PatientId" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Staff_Receipt" Member="Staff" ThisKey="StaffId" OtherKey="StaffId" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="ServiceId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameService" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Service_ServiceTreatment" Member="ServiceTreatments" ThisKey="ServiceId" OtherKey="ServiceId" Type="ServiceTreatment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiceTreatment" Member="ServiceTreatments">
+    <Type Name="ServiceTreatment">
+      <Column Name="ServiceTreatmentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TreatmentId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Service_ServiceTreatment" Member="Service" ThisKey="ServiceId" OtherKey="ServiceId" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Treatment_ServiceTreatment" Member="Treatment" ThisKey="TreatmentId" OtherKey="TreatmentId" Type="Treatment" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="StaffId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="identityNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="experience" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="certificateId" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PositionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Staff_Account" Member="Accounts" ThisKey="StaffId" OtherKey="StaffId" Type="Account" />
+      <Association Name="Staff_Prescription" Member="Prescriptions" ThisKey="StaffId" OtherKey="StaffId" Type="Prescription" />
+      <Association Name="Staff_Receipt" Member="Receipts" ThisKey="StaffId" OtherKey="StaffId" Type="Receipt" />
+      <Association Name="Staff_Treatment" Member="Treatments" ThisKey="StaffId" OtherKey="StaffId" Type="Treatment" />
+      <Association Name="Position_Staff" Member="Position" ThisKey="PositionId" OtherKey="PositionId" Type="Position" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Treatment" Member="Treatments">
+    <Type Name="Treatment">
+      <Column Name="TreatmentId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="diagnose" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="method" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="dayOfTreatment" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PatientId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StaffId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Treatment_ServiceTreatment" Member="ServiceTreatments" ThisKey="TreatmentId" OtherKey="TreatmentId" Type="ServiceTreatment" />
+      <Association Name="Patient_Treatment" Member="Patient" ThisKey="PatientId" OtherKey="PatientId" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Staff_Treatment" Member="Staff" ThisKey="StaffId" OtherKey="StaffId" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeMedicine" Member="TypeMedicines">
+    <Type Name="TypeMedicine">
+      <Column Name="TypeMedicineId" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameTypeOfMedicine" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DrugSuppliersId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="TypeMedicine_Medicine" Member="Medicines" ThisKey="TypeMedicineId" OtherKey="TypeMedicineId" Type="Medicine" />
+      <Association Name="DrugSupplier_TypeMedicine" Member="DrugSupplier" ThisKey="DrugSuppliersId" OtherKey="DrugSuppliersId" Type="DrugSupplier" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
