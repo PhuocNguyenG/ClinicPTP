@@ -108,58 +108,10 @@ namespace TEST
                         }
                     }
                 }
-            /*}*/
             
             
         }
-        /*private bool Login(string username, string password)
-        {
-            var user = username;
-            var pass = password;
-            *//*ErrorMessage = string.Empty;*//*
-
-            if (string.IsNullOrWhiteSpace(pass))
-            {
-                throw new Exception("Password should not be empty");
-            }
-
-            var hasNumber = new Regex(@"[0-9]+");
-            var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasMiniMaxChars = new Regex(@".{6,30}");
-            var hasLowerChar = new Regex(@"[a-z]+");
-            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-
-            if (!hasLowerChar.IsMatch(pass)&& !hasLowerChar.IsMatch(user))
-            {
-                MessageBox.Show("phải có kí tự chữ");
-                return false;
-            }
-            else if (!hasUpperChar.IsMatch(pass))
-            {
-                MessageBox.Show("Phải có ít nhất 1 chữ hoa");
-                return false;
-            }
-            else if (!hasMiniMaxChars.IsMatch(user)&& !hasMiniMaxChars.IsMatch(pass))
-            {
-                MessageBox.Show("phải có ít nhất 6 kí tự");
-                return false;
-            }
-            else if (!hasNumber.IsMatch(user)&&!hasNumber.IsMatch(pass))
-            {
-                MessageBox.Show("Phải có số");
-                return false;
-            }
-
-            else if (!hasSymbols.IsMatch(pass))
-            {
-                MessageBox.Show("Phải có 1 ký tự đặc biệt");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }*/
+        
 
         private void FrmMain_clickCloseForm(object sender, EventArgs e)
         {
@@ -207,8 +159,7 @@ namespace TEST
             frmMain.clickCloseForm += FrmMain_clickCloseForm;
             this.Hide();
 
-            frmMain.btnQuanLyLichHen.Visible = false;
-            frmMain.btnQuanLyLichHen.Enabled = false;
+            
 
             frmMain.btnQuanLyThuoc.Visible = false;
             frmMain.btnQuanLyThuoc.Enabled = false;
@@ -230,9 +181,10 @@ namespace TEST
             frmMain.btnHeThong.Visible = false;
             frmMain.btnHeThong.Enabled = false;
 
-            /*frmMain.btnDieuTri.Location = new Point(frmMain.btnQuanLyLichHen.Location.X, frmMain.btnQuanLyLichHen.Location.Y);
-            
-            frmMain.btn_DangXuat.Location = new Point(frmMain.btnQuanLyThuoc.Location.X, frmMain.btnQuanLyThuoc.Location.Y);*/
+            frmMain.btnDieuTri.Location = new Point(5, 242);
+            frmMain.btn_DangXuat.Location = new Point(5, 302);
+
+
 
 
             this.ShowInTaskbar = false;

@@ -16,10 +16,11 @@ namespace TEST
 
         private void UserControl_ThanhToan_Load(object sender, EventArgs e)
         {
+            dateTime_ThanhToan.Value = DateTime.Now;
             dateTime_ThanhToan_onValueChanged(sender, e);
             var query = from s in Cons.dataContext.Patients
                         join tr in Cons.dataContext.Treatments on s.PatientId equals tr.PatientId
-                        where DateTime.Now == tr.dayOfTreatment 
+                        where DateTime.Now == tr.dayOfTreatment     
                         select new
                         {
                             MaBenhNhan = s.PatientId,
@@ -33,7 +34,7 @@ namespace TEST
 
                         };
             dgv_BenhNhan.DataSource = query.Distinct();
-            dgv_BenhNhan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
 
 
             Cons.date = dateTime_ThanhToan.Value;
@@ -44,7 +45,7 @@ namespace TEST
         {
             Form_ThanhToan form_ThanhToan = new Form_ThanhToan();
             form_ThanhToan.closeForm += Form_ThanhToan_closeForm;
-            form_ThanhToan.Show();
+            form_ThanhToan.ShowDialog();
         }
 
         private void Form_ThanhToan_closeForm(object sender, EventArgs e)
@@ -66,9 +67,11 @@ namespace TEST
             }
             
         }
+        
 
         private void dateTime_ThanhToan_onValueChanged(object sender, EventArgs e)
         {
+            
             Cons.date = dateTime_ThanhToan.Value;
             var query = from s in Cons.dataContext.Patients
                         join tr in Cons.dataContext.Treatments on s.PatientId equals tr.PatientId
@@ -86,7 +89,7 @@ namespace TEST
 
                         };
             dgv_BenhNhan.DataSource = query.Distinct();
-            dgv_BenhNhan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            /*dgv_BenhNhan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;*/
         }
 
         private void btn_Print_Click(object sender, EventArgs e)
@@ -257,13 +260,13 @@ namespace TEST
             {
 
             }
-            return "0.000";
+            return "0,000";
         }
 
         public void Resize_L()
         {
             label1.Location = new System.Drawing.Point(this.Width / 2 - label1.Width / 2, label1.Location.Y);
-            dgv_BenhNhan.Height = this.Height * 5 / 6;
+            /*dgv_BenhNhan.Height = this.Height * 5 / 6;*/
         }
         private void UserControl_ThanhToan_Resize(object sender, EventArgs e)
         {
@@ -271,6 +274,11 @@ namespace TEST
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_BenhNhan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

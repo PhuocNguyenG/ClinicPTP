@@ -350,5 +350,10 @@ namespace TEST
 
 
         #endregion
+
+        private void DataGrid_QuanLyThuoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

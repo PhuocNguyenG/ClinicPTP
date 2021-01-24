@@ -157,27 +157,6 @@ namespace TEST
             edit_DieuTri.txtMaBenhNhan.Text = dgv_DieuTri.Rows[i].Cells[4].Value.ToString();
             edit_DieuTri.txtMaBenhNhan1.Text = dgv_DieuTri.Rows[i].Cells[6].Value.ToString();
             edit_DieuTri.txtTenBenhNhan.Text = dgv_DieuTri.Rows[i].Cells[7].Value.ToString();
-            /*           edit_DieuTri.dtpkNgaySinh.Text = dgv_BenhNhan.Rows[i].Cells[2].Value.ToString();*/
-            /*if (dgv_DieuTri.Rows[i].Cells[3].Value.ToString() == "Nam")
-            {
-                edit_DieuTri.radioButton_Nam.Checked = true;
-            }
-            if (dgv_DieuTri.Rows[i].Cells[3].Value.ToString() == "Nữ")
-            {
-                edit_DieuTri.radioButton_Nu.Checked = true;
-
-            }*/
-
-            /*edit_DieuTri.txtSoDienThoai.Text = dgv_DieuTri.Rows[i].Cells[4].Value.ToString();
-            edit_DieuTri.txtDiaChi.Text = dgv_DieuTri.Rows[i].Cells[5].Value.ToString();*/
-            /*MaDieuTri = t.TreatmentId,
-                            ChuanDoan = t.diagnose,
-                            PhuongPhapDieuTri = t.method,
-                            NgayDieuTri = t.dayOfTreatment,
-                            MaBacSi = t.StaffId,
-                            TenBacSi = s.fullName,
-                            MaBenhNhan = p.PatientId,
-                            TenBenhNhan = p.fullName*/
             edit_DieuTri.txtChuanDoan.Text = dgv_DieuTri.Rows[i].Cells[1].Value.ToString();
             edit_DieuTri.txtDieuTri.Text = dgv_DieuTri.Rows[i].Cells[2].Value.ToString();
             edit_DieuTri.txtDiaChi.Text = dgv_DieuTri.Rows[i].Cells[5].Value.ToString();

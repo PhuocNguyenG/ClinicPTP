@@ -196,9 +196,9 @@
             this.lbl_KhachDua.Location = new System.Drawing.Point(36, 406);
             this.lbl_KhachDua.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_KhachDua.Name = "lbl_KhachDua";
-            this.lbl_KhachDua.Size = new System.Drawing.Size(83, 22);
+            this.lbl_KhachDua.Size = new System.Drawing.Size(99, 22);
             this.lbl_KhachDua.TabIndex = 1;
-            this.lbl_KhachDua.Text = "Tiền Trả";
+            this.lbl_KhachDua.Text = "Tiền Thừa";
             // 
             // label3
             // 

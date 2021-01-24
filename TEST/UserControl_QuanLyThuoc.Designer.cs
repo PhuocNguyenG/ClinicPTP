@@ -89,8 +89,9 @@
             this.DataGrid_QuanLyThuoc.Name = "DataGrid_QuanLyThuoc";
             this.DataGrid_QuanLyThuoc.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DataGrid_QuanLyThuoc.RowHeadersWidth = 51;
-            this.DataGrid_QuanLyThuoc.Size = new System.Drawing.Size(1594, 561);
+            this.DataGrid_QuanLyThuoc.Size = new System.Drawing.Size(1598, 561);
             this.DataGrid_QuanLyThuoc.TabIndex = 0;
+            this.DataGrid_QuanLyThuoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_QuanLyThuoc_CellContentClick);
             this.DataGrid_QuanLyThuoc.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGrid_QuanLyThuoc_CellMouseClick);
             // 
             // txtTimKiem

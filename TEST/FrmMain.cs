@@ -288,7 +288,7 @@ namespace TEST
                 
                 
             }
-            else
+            else if(this.WindowState == FormWindowState.Maximized)
             {
                 
                 this.WindowState = FormWindowState.Normal;

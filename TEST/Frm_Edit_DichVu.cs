@@ -87,7 +87,7 @@ namespace TEST
 
         private void txtGiaTien_KeyPress(object sender, KeyPressEventArgs e)
         {
-            f(!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != (','))
+            if(!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != (','))
             {
                 e.Handled = true;
                 MessageBox.Show("Chỉ nhập số");

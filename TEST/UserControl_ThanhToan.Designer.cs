@@ -68,13 +68,14 @@
             this.dgv_BenhNhan.GridColor = System.Drawing.SystemColors.Control;
             this.dgv_BenhNhan.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dgv_BenhNhan.HeaderForeColor = System.Drawing.Color.Black;
-            this.dgv_BenhNhan.Location = new System.Drawing.Point(0, 184);
+            this.dgv_BenhNhan.Location = new System.Drawing.Point(4, 184);
             this.dgv_BenhNhan.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_BenhNhan.Name = "dgv_BenhNhan";
             this.dgv_BenhNhan.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv_BenhNhan.RowHeadersWidth = 51;
-            this.dgv_BenhNhan.Size = new System.Drawing.Size(1615, 582);
+            this.dgv_BenhNhan.Size = new System.Drawing.Size(1592, 578);
             this.dgv_BenhNhan.TabIndex = 0;
+            this.dgv_BenhNhan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_BenhNhan_CellContentClick);
             this.dgv_BenhNhan.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_BenhNhan_CellMouseClick);
             // 
             // dateTime_ThanhToan
@@ -85,12 +86,12 @@
             this.dateTime_ThanhToan.ForeColor = System.Drawing.Color.Black;
             this.dateTime_ThanhToan.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dateTime_ThanhToan.FormatCustom = null;
-            this.dateTime_ThanhToan.Location = new System.Drawing.Point(1206, 41);
+            this.dateTime_ThanhToan.Location = new System.Drawing.Point(1191, 41);
             this.dateTime_ThanhToan.Margin = new System.Windows.Forms.Padding(5);
             this.dateTime_ThanhToan.Name = "dateTime_ThanhToan";
             this.dateTime_ThanhToan.Size = new System.Drawing.Size(404, 44);
             this.dateTime_ThanhToan.TabIndex = 1;
-            this.dateTime_ThanhToan.Value = new System.DateTime(2018, 12, 11, 19, 34, 42, 128);
+            this.dateTime_ThanhToan.Value = new System.DateTime(2021, 1, 23, 0, 0, 0, 0);
             this.dateTime_ThanhToan.onValueChanged += new System.EventHandler(this.dateTime_ThanhToan_onValueChanged);
             // 
             // btn_LapPhieuThu
@@ -147,7 +148,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1615, 145);
+            this.panel1.Size = new System.Drawing.Size(1600, 145);
             this.panel1.TabIndex = 16;
             // 
             // panel_Title_QuanLyBenhNhan
@@ -157,7 +158,7 @@
             this.panel_Title_QuanLyBenhNhan.Location = new System.Drawing.Point(0, 0);
             this.panel_Title_QuanLyBenhNhan.Margin = new System.Windows.Forms.Padding(4);
             this.panel_Title_QuanLyBenhNhan.Name = "panel_Title_QuanLyBenhNhan";
-            this.panel_Title_QuanLyBenhNhan.Size = new System.Drawing.Size(1615, 32);
+            this.panel_Title_QuanLyBenhNhan.Size = new System.Drawing.Size(1600, 32);
             this.panel_Title_QuanLyBenhNhan.TabIndex = 16;
             // 
             // UserControl_ThanhToan
@@ -170,7 +171,7 @@
             this.Controls.Add(this.panel_Title_QuanLyBenhNhan);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl_ThanhToan";
-            this.Size = new System.Drawing.Size(1615, 766);
+            this.Size = new System.Drawing.Size(1600, 766);
             this.Load += new System.EventHandler(this.UserControl_ThanhToan_Load);
             this.Resize += new System.EventHandler(this.UserControl_ThanhToan_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BenhNhan)).EndInit();
@@ -184,11 +185,11 @@
         #endregion
 
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgv_BenhNhan;
-        private Bunifu.Framework.UI.BunifuDatepicker dateTime_ThanhToan;
         private Bunifu.Framework.UI.BunifuImageButton btn_LapPhieuThu;
         private Bunifu.Framework.UI.BunifuImageButton btn_Print;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel_Title_QuanLyBenhNhan;
+        public Bunifu.Framework.UI.BunifuDatepicker dateTime_ThanhToan;
     }
 }

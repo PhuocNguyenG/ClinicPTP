@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TEST.Xử_Lý_hóa_đơn;
@@ -11,6 +12,7 @@ namespace TEST
     public partial class Form_ThanhToan : Form
     {
         
+
         decimal total = 0;
         decimal tienMat = 0;
         decimal tienTra = 0;
@@ -47,7 +49,7 @@ namespace TEST
                                          TenThuoc = m.nameMedicine,
                                          SoLuong = pm.quantity,
                                          DonGia = m.price,
-                                         GiaThanh = pm.quantity*m.quantity,
+                                         GiaThanh = pm.quantity*m.price,
                                      };
 
 
@@ -65,8 +67,8 @@ namespace TEST
                 txtNote.Text += "Danh sách Thuốc\r\n";
                 foreach (var item in queryMedicines)
                 {
-                    txtNote.Text += item.TenThuoc + " - " + item.SoLuong.ToString() + " - " + item.DonGia + " - " + item.GiaThanh.ToString() + "VNĐ\r\n";
-                    total += item.GiaThanh;
+                    txtNote.Text += item.TenThuoc + " - " + item.SoLuong.ToString() + " - " + item.DonGia.ToString() + " - " + item.GiaThanh.ToString() + "VNĐ\r\n";
+                    total += item.GiaThanh.Value;
                 }
 
                 txtTongTien.Text = total.ToString();
@@ -94,7 +96,7 @@ namespace TEST
                 receipt.ReceiptId = Cons.ranDomId();
                 receipt.receiptdate = DateTime.Now;
                 receipt.statusReceipt = true;
-                receipt.PatientId = Cons.PatientId;
+                receipt.PatientId = Cons.PatientId; 
                 receipt.note = txtNote.Text;
                 receipt.total = decimal.Parse(txtTongTien.Text);
                 receipt.StaffId = (from a in Cons.dataContext.Accounts join s in Cons.dataContext.Staffs on a.StaffId equals s.StaffId where Cons.AccountID == a.AccountId select s).Single().StaffId;
@@ -179,9 +181,9 @@ namespace TEST
                 int offset = 40;
 
                 graphic.DrawImage(Properties.Resources.hospital, 10, 10, 50, 50);
-                graphic.DrawString("NHA KHOA GIA BẢO", new Font("Courier New", 18), new SolidBrush(Color.Black), startX + 60, startY);
-                graphic.DrawString("273 Đà Nẵng, Cầu Tre, Ngô Quyền, HP", new Font("Courier New", 10), new SolidBrush(Color.Black), startX + 60, startY + 25);
-                graphic.DrawString("NHAKHOAGIABAO.VN", new Font("Courier New", 12), new SolidBrush(Color.Black), startX + 60, startY + offset);
+                graphic.DrawString("PHÒNG KHÁM PTP", new Font("Courier New", 18), new SolidBrush(Color.Black), startX + 20, startY);
+                graphic.DrawString("HỒ CHÍ MINH", new Font("Courier New", 10), new SolidBrush(Color.Black), startX + 30, startY + 25);
+                graphic.DrawString("CLINICPTP.VN", new Font("Courier New", 12), new SolidBrush(Color.Black), startX + 30, startY + offset);
 
                 Pen blackPen = new Pen(Color.Black, 1);
                 PointF point1 = new PointF(startX, startY + offset + 20);
@@ -191,7 +193,7 @@ namespace TEST
                 offset = offset + (int)FontHeight; //make the spacing consistent
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent
 
-                graphic.DrawString("PHIẾU THU", new Font("Courier New", 22), new SolidBrush(Color.Black), startX + 105, startY + offset);
+                graphic.DrawString("PHIẾU THU", new Font("Courier New", 22), new SolidBrush(Color.Black), startX + 95, startY + offset);
 
 
                 offset = offset + (int)FontHeight; //make the spacing consistent
@@ -236,15 +238,18 @@ namespace TEST
 
 
                 graphic.DrawString("TỔNG TIỀN TRẢ ", new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(total), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(total), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("TIỀN MẶT ", font, new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(tienMat), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(tienMat), font, new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
-                graphic.DrawString("TIỀN TRẢ ", font, new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(tienTra), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString("TIỀN THỪA ", font, new SolidBrush(Color.Black), startX, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(tienTra), font, new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
 
@@ -254,7 +259,7 @@ namespace TEST
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent    
 
-                graphic.DrawString(" CẢM ƠN BẠN ĐÃ GHÉ THĂM!,", font, new SolidBrush(Color.Black), startX, startY + offset);
+                graphic.DrawString(" CẢM ƠN BẠN ĐÃ GHÉ THĂM!,", font, new SolidBrush(Color.Black), startX + 10, startY + offset);
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("HI VỌNG BẠN SẼ GHÉ THĂM LẠI!", font, new SolidBrush(Color.Black), startX, startY + offset);
             }
@@ -267,6 +272,8 @@ namespace TEST
         }
         public static string _DoiSoSangDonViTienTe(object _object)
         {
+            /*CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");*/
+            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
             try
             {
                 if (_object.ToString().Trim().Length == 0)
@@ -274,18 +281,18 @@ namespace TEST
 
                 if (_object.ToString() == "0")
                 {
-                    return "0,000";
+                    return "0";
                 }
-
-                decimal dThanhTien = Convert.ToDecimal(_object);
-                string strThanhTien = string.Format("{0:#,#.}", dThanhTien);
+                
+                Decimal dThanhTien = Convert.ToDecimal(_object);
+                string strThanhTien = string.Format("{0:C0}", _object);
                 return strThanhTien;
             }
             catch (Exception)
             {
 
             }
-            return "0.000";
+            return "0";
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

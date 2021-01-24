@@ -54,24 +54,34 @@ namespace TEST
         public event EventHandler click_close = null;
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Treatment treatment = new Treatment();
-            treatment.TreatmentId = txtMaDieuTri.Text;
-            treatment.diagnose = txtChuanDoan.Text;
-            treatment.method = txtDieuTri.Text;
-            treatment.dayOfTreatment = dtpkNgayDieuTri.Value;
-            treatment.PatientId = txtMaBenhNhan.Text;
-            treatment.StaffId = comboBox_BacSI.SelectedValue.ToString();
-            Cons.dataContext.Treatments.InsertOnSubmit(treatment);
-            Cons.dataContext.SubmitChanges();
-            click_close(sender, e);
-            this.Close();
+            if (comboBox_BacSI.Text == "")
+            {
+                MessageBox.Show("Chỉ có bác sĩ mới được thêm!");
+            }
+            else
+            {
+
+
+                Treatment treatment = new Treatment();
+                treatment.TreatmentId = txtMaDieuTri.Text;
+                treatment.diagnose = txtChuanDoan.Text;
+                treatment.method = txtDieuTri.Text;
+                treatment.dayOfTreatment = dtpkNgayDieuTri.Value;
+                treatment.PatientId = txtMaBenhNhan.Text;
+                treatment.StaffId = comboBox_BacSI.SelectedValue.ToString();
+                Cons.dataContext.Treatments.InsertOnSubmit(treatment);
+                Cons.dataContext.SubmitChanges();
+                click_close(sender, e);
+                this.Close();
+
+            }
             
 
         }
 
         private void txtMaDieuTri_TextChanged(object sender, EventArgs e)
         {
-            txtMaBenhNhan.CharacterCasing = CharacterCasing.Upper;
+            txtMaDieuTri.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void txtTenBenhNhan_KeyPress(object sender, KeyPressEventArgs e)
