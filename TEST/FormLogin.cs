@@ -178,7 +178,7 @@ namespace TEST
         }
 
 
-
+        
 
         public void CreateFormMain_Staff()
         {
@@ -190,11 +190,11 @@ namespace TEST
             frmMain.btnDieuTri.Visible = false;
             frmMain.btnDieuTri.Enabled = false;
 
-            frmMain.btnThongKe.Location = new Point(frmMain.btnDieuTri.Location.X, frmMain.btnDieuTri.Location.Y);
-            frmMain.btnThanhToan.Location = new Point(frmMain.btnThongKe.Location.X, frmMain.btnThongKe.Location.Y);
-            frmMain.btnHeThong.Location = new Point(frmMain.btnThanhToan.Location.X, frmMain.btnThanhToan.Location.Y);
-            frmMain.btn_DangXuat.Location = new Point(frmMain.btnHeThong.Location.X, frmMain.btnHeThong.Location.Y);
-
+            frmMain.btnThongKe.Location = new Point(5, 422);
+            frmMain.btnThanhToan.Location = new Point(5,482);
+            frmMain.btnHeThong.Location = new Point(5,542);
+            
+            frmMain.btn_DangXuat.Location = new Point(5, 602); 
             this.ShowInTaskbar = false;
             frmMain.ShowDialog();
             /*this.Show();*/
@@ -213,8 +213,7 @@ namespace TEST
             frmMain.btnQuanLyThuoc.Visible = false;
             frmMain.btnQuanLyThuoc.Enabled = false;
 
-            frmMain.btnQuanLyNVBS.Visible = false;
-            frmMain.btnQuanLyNVBS.Enabled = false;
+          
 
             frmMain.btnQuanLyNVBS.Visible = false;
             frmMain.btnQuanLyNVBS.Enabled = false;
@@ -231,9 +230,9 @@ namespace TEST
             frmMain.btnHeThong.Visible = false;
             frmMain.btnHeThong.Enabled = false;
 
-            frmMain.btnDieuTri.Location = new Point(frmMain.btnQuanLyLichHen.Location.X, frmMain.btnQuanLyLichHen.Location.Y);
+            /*frmMain.btnDieuTri.Location = new Point(frmMain.btnQuanLyLichHen.Location.X, frmMain.btnQuanLyLichHen.Location.Y);
             
-            frmMain.btn_DangXuat.Location = new Point(frmMain.btnQuanLyThuoc.Location.X, frmMain.btnQuanLyThuoc.Location.Y);
+            frmMain.btn_DangXuat.Location = new Point(frmMain.btnQuanLyThuoc.Location.X, frmMain.btnQuanLyThuoc.Location.Y);*/
 
 
             this.ShowInTaskbar = false;

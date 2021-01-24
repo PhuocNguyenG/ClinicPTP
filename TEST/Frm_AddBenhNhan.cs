@@ -78,6 +78,14 @@ namespace TEST
         private void txtMaBenhNhan_TextChanged(object sender, EventArgs e)
         {
             txtMaBenhNhan.CharacterCasing = CharacterCasing.Upper;
+            if (txtMaBenhNhan.Text.Length > 0 && txtTenBenhNhan.Text.Length > 0)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
+            }
         }
 
         private void txtTenBenhNhan_KeyPress(object sender, KeyPressEventArgs e)
@@ -100,6 +108,24 @@ namespace TEST
             {
                 e.Handled = true;
                 MessageBox.Show("Không nhập ký tự đặc biệt");
+            }
+        }
+
+        private void Frm_AddBenhNhan_Load(object sender, EventArgs e)
+        {
+            btnOK.Enabled = false;  
+        }
+
+        private void txtTenBenhNhan_TextChanged(object sender, EventArgs e)
+        {
+            txtTenBenhNhan.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenBenhNhan.Text.Length > 0 && txtMaBenhNhan.Text.Length > 0)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
             }
         }
     }

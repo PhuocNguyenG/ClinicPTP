@@ -34,5 +34,10 @@ namespace TEST
             click_CloseForm(sender, e);
             this.Close();
         }
+
+        private void bnt_CancelThemLichHen_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

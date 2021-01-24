@@ -291,6 +291,7 @@
             this.bnt_CancelThemLichHen.TabIndex = 9;
             this.bnt_CancelThemLichHen.Text = "Cancel";
             this.bnt_CancelThemLichHen.UseVisualStyleBackColor = false;
+            this.bnt_CancelThemLichHen.Click += new System.EventHandler(this.bnt_CancelThemLichHen_Click);
             // 
             // Form_ThemLichHen
             // 

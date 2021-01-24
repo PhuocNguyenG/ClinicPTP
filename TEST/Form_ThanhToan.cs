@@ -295,5 +295,10 @@ namespace TEST
             txtTienTra.Text = tienTra.ToString();
             
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

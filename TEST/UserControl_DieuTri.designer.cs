@@ -141,6 +141,7 @@
             this.dgv_DieuTri.TabIndex = 0;
             this.dgv_DieuTri.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DieuTri_CellContentClick);
             this.dgv_DieuTri.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_DieuTri_CellMouseClick);
+            this.dgv_DieuTri.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_DieuTri_CellMouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
@@ -343,6 +344,7 @@
             this.btnEdit.TabIndex = 11;
             this.btnEdit.TabStop = false;
             this.btnEdit.Zoom = 10;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd_DieuTri
             // 

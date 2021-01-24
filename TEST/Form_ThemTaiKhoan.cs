@@ -178,10 +178,14 @@ namespace TEST
                 lbTenTaiKhoan.Visible = false;
             }
 
-            else if(txt_TenTaiKhoan.Text.Length >= 6 && txt_MatKhauMoi.Text != "" && txt_MatKhauMoi.Text.Length >= 6)
+             if(txt_TenTaiKhoan.Text.Length >= 6 && txt_MatKhauMoi.Text != "" && txt_MatKhauMoi.Text.Length >= 6)
             {
                 bnt_OkThemLichHen.Enabled = true;
 
+            }
+            else
+            {
+                bnt_OkThemLichHen.Enabled = false;
             }
 
         } 
@@ -205,7 +209,12 @@ namespace TEST
             if (txt_TenTaiKhoan.Text.Length >= 6 && txt_MatKhauMoi.Text != "" && txt_MatKhauMoi.Text.Length >= 6)
             {
                 bnt_OkThemLichHen.Enabled = true;
+
             
+            }
+            else
+            {
+                bnt_OkThemLichHen.Enabled = false;
             }
         }
     }

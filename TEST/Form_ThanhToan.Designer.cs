@@ -63,18 +63,19 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnCancel.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(413, 599);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(116, 49);
             this.btnCancel.TabIndex = 20;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtPhieuThu
             // 
             this.txtPhieuThu.Enabled = false;
             this.txtPhieuThu.Location = new System.Drawing.Point(183, 53);
-            this.txtPhieuThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhieuThu.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhieuThu.Name = "txtPhieuThu";
             this.txtPhieuThu.ReadOnly = true;
             this.txtPhieuThu.Size = new System.Drawing.Size(329, 29);
@@ -108,9 +109,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 58);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(563, 534);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
@@ -119,7 +120,7 @@
             // txtNote
             // 
             this.txtNote.Location = new System.Drawing.Point(183, 153);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(4);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.ReadOnly = true;
@@ -129,7 +130,7 @@
             // txtTienMat
             // 
             this.txtTienMat.Location = new System.Drawing.Point(183, 460);
-            this.txtTienMat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTienMat.Margin = new System.Windows.Forms.Padding(4);
             this.txtTienMat.Name = "txtTienMat";
             this.txtTienMat.Size = new System.Drawing.Size(329, 29);
             this.txtTienMat.TabIndex = 0;
@@ -139,7 +140,7 @@
             // txtTienTra
             // 
             this.txtTienTra.Location = new System.Drawing.Point(183, 399);
-            this.txtTienTra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTienTra.Margin = new System.Windows.Forms.Padding(4);
             this.txtTienTra.Name = "txtTienTra";
             this.txtTienTra.ReadOnly = true;
             this.txtTienTra.Size = new System.Drawing.Size(329, 29);
@@ -149,7 +150,7 @@
             // txtTongTien
             // 
             this.txtTongTien.Location = new System.Drawing.Point(183, 342);
-            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
             this.txtTongTien.Size = new System.Drawing.Size(329, 29);
@@ -159,7 +160,7 @@
             // txt_BenhNhan
             // 
             this.txt_BenhNhan.Location = new System.Drawing.Point(183, 101);
-            this.txt_BenhNhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_BenhNhan.Margin = new System.Windows.Forms.Padding(4);
             this.txt_BenhNhan.Name = "txt_BenhNhan";
             this.txt_BenhNhan.ReadOnly = true;
             this.txt_BenhNhan.Size = new System.Drawing.Size(329, 29);
@@ -226,7 +227,7 @@
             this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnOk.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.Location = new System.Drawing.Point(260, 599);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(116, 49);
             this.btnOk.TabIndex = 19;
@@ -240,7 +241,7 @@
             this.panel1.Controls.Add(this.bunifuImageButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(599, 38);
             this.panel1.TabIndex = 17;
@@ -252,7 +253,7 @@
             this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
             this.bunifuImageButton1.ImageActive = null;
             this.bunifuImageButton1.Location = new System.Drawing.Point(549, 4);
-            this.bunifuImageButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuImageButton1.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuImageButton1.Name = "bunifuImageButton1";
             this.bunifuImageButton1.Size = new System.Drawing.Size(33, 31);
             this.bunifuImageButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -271,7 +272,7 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_ThanhToan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_ThanhToan";

@@ -124,7 +124,7 @@
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(264, 39);
             this.txtTimKiem.TabIndex = 13;
-            this.txtTimKiem.text = "";
+            this.txtTimKiem.text = "Tìm kiếm";
             this.toolTip1.SetToolTip(this.txtTimKiem, "Mã Bệnh Nhân");
             this.txtTimKiem.OnTextChange += new System.EventHandler(this.txtTimKiem_OnTextChange);
             this.txtTimKiem.KeyDown += new System.EventHandler(this.txtTimKiem_KeyDown);

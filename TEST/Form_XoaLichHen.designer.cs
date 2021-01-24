@@ -49,7 +49,7 @@
             this.panel1.Controls.Add(this.bunifuImageButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(467, 38);
             this.panel1.TabIndex = 14;
@@ -73,7 +73,7 @@
             this.bunifuImageButton2.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton2.Image")));
             this.bunifuImageButton2.ImageActive = null;
             this.bunifuImageButton2.Location = new System.Drawing.Point(16, 4);
-            this.bunifuImageButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuImageButton2.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuImageButton2.Name = "bunifuImageButton2";
             this.bunifuImageButton2.Size = new System.Drawing.Size(33, 31);
             this.bunifuImageButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -87,7 +87,7 @@
             this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
             this.bunifuImageButton1.ImageActive = null;
             this.bunifuImageButton1.Location = new System.Drawing.Point(421, 4);
-            this.bunifuImageButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuImageButton1.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuImageButton1.Name = "bunifuImageButton1";
             this.bunifuImageButton1.Size = new System.Drawing.Size(33, 31);
             this.bunifuImageButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -102,12 +102,13 @@
             this.bnt_CancelThemLichHen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.bnt_CancelThemLichHen.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnt_CancelThemLichHen.Location = new System.Drawing.Point(297, 128);
-            this.bnt_CancelThemLichHen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bnt_CancelThemLichHen.Margin = new System.Windows.Forms.Padding(4);
             this.bnt_CancelThemLichHen.Name = "bnt_CancelThemLichHen";
             this.bnt_CancelThemLichHen.Size = new System.Drawing.Size(108, 39);
             this.bnt_CancelThemLichHen.TabIndex = 13;
             this.bnt_CancelThemLichHen.Text = "Cancel";
             this.bnt_CancelThemLichHen.UseVisualStyleBackColor = false;
+            this.bnt_CancelThemLichHen.Click += new System.EventHandler(this.bnt_CancelThemLichHen_Click);
             // 
             // bnt_OkXoaLichHen
             // 
@@ -115,7 +116,7 @@
             this.bnt_OkXoaLichHen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.bnt_OkXoaLichHen.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnt_OkXoaLichHen.Location = new System.Drawing.Point(78, 128);
-            this.bnt_OkXoaLichHen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bnt_OkXoaLichHen.Margin = new System.Windows.Forms.Padding(4);
             this.bnt_OkXoaLichHen.Name = "bnt_OkXoaLichHen";
             this.bnt_OkXoaLichHen.Size = new System.Drawing.Size(111, 39);
             this.bnt_OkXoaLichHen.TabIndex = 12;
@@ -145,7 +146,7 @@
             this.Controls.Add(this.bnt_OkXoaLichHen);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_XoaLichHen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_XoaLichHen";

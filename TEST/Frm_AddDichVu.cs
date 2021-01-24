@@ -55,6 +55,14 @@ namespace TEST
         private void txtDichVu_TextChanged(object sender, EventArgs e)
         {
             txtDichVu.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenDichVu.Text.Length > 0 && txtDichVu.Text.Length > 0)
+            {
+                btnOk.Enabled = true;
+            }
+            else
+            {
+                btnOk.Enabled = false;
+            }
         }
 
         private void txtTenDichVu_KeyPress(object sender, KeyPressEventArgs e)
@@ -79,6 +87,24 @@ namespace TEST
         private void txtGiaTien_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtTenDichVu_TextChanged(object sender, EventArgs e)
+        {
+            txtTenDichVu.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenDichVu.Text.Length > 0 && txtDichVu.Text.Length > 0)
+            {
+                btnOk.Enabled = true;
+            }
+            else
+            {
+                btnOk.Enabled = false;
+            }
+        }
+
+        private void Frm_AddDichVu_Load(object sender, EventArgs e)
+        {
+            btnOk.Enabled = false;
         }
     }
 }

@@ -64,5 +64,46 @@ namespace TEST
                 MessageBox.Show("Vui Lòng Nhập Chữ");
             }
         }
+
+        private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) & !char.IsControl(e.KeyChar) & (Keys)e.KeyChar != Keys.Back)
+            {
+                e.Handled = true;
+                MessageBox.Show("Chỉ nhập số");
+            }
+            if (txtSoDienThoai.Text.Length > 10 && (Keys)e.KeyChar != Keys.Back)
+            {
+                e.Handled = true;
+                MessageBox.Show("Đã quá 11 số");
+            }
+        }
+
+        private void txtTenBenhNhan_TextChanged(object sender, EventArgs e)
+        {
+            txtTenBenhNhan.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenBenhNhan.Text.Length > 0)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
+            }
+        }
+
+        private void Frm_EditBenhNhan_Load(object sender, EventArgs e)
+        {
+            btnOK.Enabled = true;
+        }
+
+        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) & !char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != ('@') & e.KeyChar != ('_') & e.KeyChar != ('.'))
+            {
+                e.Handled = true;
+                MessageBox.Show("Không nhập ký tự đặc biệt");
+            }
+        }
     }
 }

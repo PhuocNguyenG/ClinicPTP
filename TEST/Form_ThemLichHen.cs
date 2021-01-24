@@ -109,5 +109,10 @@ namespace TEST
         {
 
         }
+
+        private void bnt_CancelThemLichHen_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

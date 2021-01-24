@@ -189,6 +189,7 @@
             this.txtTenNVBS.Name = "txtTenNVBS";
             this.txtTenNVBS.Size = new System.Drawing.Size(280, 27);
             this.txtTenNVBS.TabIndex = 1;
+            this.txtTenNVBS.TextChanged += new System.EventHandler(this.txtTenNVBS_TextChanged);
             this.txtTenNVBS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenNVBS_KeyPress);
             // 
             // txtSoDienThoai

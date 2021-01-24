@@ -78,6 +78,7 @@
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
             this.txtTenBenhNhan.Size = new System.Drawing.Size(280, 27);
             this.txtTenBenhNhan.TabIndex = 1;
+            this.txtTenBenhNhan.TextChanged += new System.EventHandler(this.txtTenBenhNhan_TextChanged);
             this.txtTenBenhNhan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenBenhNhan_KeyPress);
             // 
             // txtMaBenhNhan
@@ -337,6 +338,7 @@
             this.Name = "Frm_AddBenhNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_AddBenhNhan";
+            this.Load += new System.EventHandler(this.Frm_AddBenhNhan_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);

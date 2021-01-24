@@ -98,6 +98,14 @@ namespace TEST
         private void txtMaNVBS_TextChanged(object sender, EventArgs e)
         {
            txtMaNVBS.CharacterCasing = CharacterCasing.Upper;
+            if (txtMaNVBS.Text.Length > 0 && txtTenNVBS.Text.Length > 0)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
+            }
         }
 
         private void txtTenNVBS_KeyPress(object sender, KeyPressEventArgs e)
@@ -134,6 +142,19 @@ namespace TEST
             {
                 e.Handled = true;
                 MessageBox.Show("Không nhập ký tự đặc biệt");
+            }
+        }
+
+        private void txtTenNVBS_TextChanged(object sender, EventArgs e)
+        {
+            txtTenNVBS.CharacterCasing = CharacterCasing.Upper;
+            if (txtMaNVBS.Text.Length > 0 && txtTenNVBS.Text.Length > 0)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
             }
         }
     }

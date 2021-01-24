@@ -24,7 +24,7 @@ namespace TEST
 
         private void Frm_Edit_DichVu_Load(object sender, EventArgs e)
         {
-            
+            btnOk.Enabled = false;
         }
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
@@ -64,6 +64,33 @@ namespace TEST
             {
                 e.Handled = true;
                 MessageBox.Show("Vui Lòng Nhập Chữ");
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtTenDichVu_TextChanged(object sender, EventArgs e)
+        {
+            txtTenDichVu.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenDichVu.Text.Length > 0)
+            {
+                btnOk.Enabled = true;
+            }
+            else
+            {
+                btnOk.Enabled = false;
+            }
+        }
+
+        private void txtGiaTien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            f(!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != (','))
+            {
+                e.Handled = true;
+                MessageBox.Show("Chỉ nhập số");
             }
         }
     }

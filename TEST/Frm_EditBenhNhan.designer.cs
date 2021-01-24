@@ -85,6 +85,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(280, 27);
             this.txtEmail.TabIndex = 10;
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // label7
             // 
@@ -136,6 +137,7 @@
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
             this.txtTenBenhNhan.Size = new System.Drawing.Size(280, 27);
             this.txtTenBenhNhan.TabIndex = 1;
+            this.txtTenBenhNhan.TextChanged += new System.EventHandler(this.txtTenBenhNhan_TextChanged);
             this.txtTenBenhNhan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenBenhNhan_KeyPress);
             // 
             // txtSoDienThoai
@@ -145,6 +147,7 @@
             this.txtSoDienThoai.Name = "txtSoDienThoai";
             this.txtSoDienThoai.Size = new System.Drawing.Size(280, 27);
             this.txtSoDienThoai.TabIndex = 3;
+            this.txtSoDienThoai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoDienThoai_KeyPress);
             // 
             // txtMaBenhNhan
             // 
@@ -333,6 +336,7 @@
             this.Name = "Frm_EditBenhNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_EditBenhNhan";
+            this.Load += new System.EventHandler(this.Frm_EditBenhNhan_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).EndInit();
             this.groupBox1.ResumeLayout(false);

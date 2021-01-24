@@ -104,5 +104,29 @@ namespace TEST
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtTenThuoc_TextChanged(object sender, EventArgs e)
+        {
+            txtTenThuoc.CharacterCasing = CharacterCasing.Upper;
+            if (txtTenThuoc.Text.Length > 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
+
+        private void Frm_EditThuoc_Load(object sender, EventArgs e)
+        {
+            button1.Enabled = false;
+
+        }
     }
 }

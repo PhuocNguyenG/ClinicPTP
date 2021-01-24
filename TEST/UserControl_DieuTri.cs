@@ -110,10 +110,13 @@ namespace TEST
             add_DieuTri.txtSoDienThoai.Text = dgv_BenhNhan.Rows[i].Cells[4].Value.ToString();
             add_DieuTri.txtDiaChi.Text = dgv_BenhNhan.Rows[i].Cells[5].Value.ToString();
             Cons.PatientId = dgv_BenhNhan.Rows[i].Cells[0].Value.ToString();
+            
+
 
         }
 
         Frm_Add_DieuTri add_DieuTri = new Frm_Add_DieuTri();
+        Frm_Edit_DieuTri edit_DieuTri = new Frm_Edit_DieuTri();
         private void btnAdd_DieuTri_Click(object sender, EventArgs e)
         {
             
@@ -126,12 +129,20 @@ namespace TEST
 
         private void Add_DieuTri_click_close(object sender, EventArgs e)
         {
-            /*UserControl_DieuTri_Load(sender, e);*/
+            UserControl_DieuTri_Load(sender, e);
+        }
+        private void Edit_DieuTri_click_close(object sender, EventArgs e)
+        {
+            UserControl_DieuTri_Load(sender, e);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            Treatment treatment = new Treatment();
+            treatment = Cons.dataContext.Treatments.Where(ma => ma.TreatmentId == Cons.temp).Single();
+            Cons.dataContext.Treatments.DeleteOnSubmit(treatment);
+            Cons.dataContext.SubmitChanges();
+            UserControl_DieuTri_Load(sender, e);
         }
         Frm_DichVuDieuTri frm_DichVuDieuTri = new Frm_DichVuDieuTri();
        
@@ -141,6 +152,37 @@ namespace TEST
             int i = dgv_DieuTri.CurrentCell.RowIndex;
             frm_DichVuDieuTri.txtMaDieuTri.Text = dgv_DieuTri.Rows[i].Cells[0].Value.ToString();
             tam = dgv_DieuTri.Rows[i].Cells[0].Value.ToString();
+            Cons.temp = dgv_DieuTri.Rows[i].Cells[0].Value.ToString();
+            edit_DieuTri.txtMaDieuTri.Text = dgv_DieuTri.Rows[i].Cells[0].Value.ToString();
+            edit_DieuTri.txtMaBenhNhan.Text = dgv_DieuTri.Rows[i].Cells[4].Value.ToString();
+            edit_DieuTri.txtMaBenhNhan1.Text = dgv_DieuTri.Rows[i].Cells[6].Value.ToString();
+            edit_DieuTri.txtTenBenhNhan.Text = dgv_DieuTri.Rows[i].Cells[7].Value.ToString();
+            /*           edit_DieuTri.dtpkNgaySinh.Text = dgv_BenhNhan.Rows[i].Cells[2].Value.ToString();*/
+            /*if (dgv_DieuTri.Rows[i].Cells[3].Value.ToString() == "Nam")
+            {
+                edit_DieuTri.radioButton_Nam.Checked = true;
+            }
+            if (dgv_DieuTri.Rows[i].Cells[3].Value.ToString() == "Nữ")
+            {
+                edit_DieuTri.radioButton_Nu.Checked = true;
+
+            }*/
+
+            /*edit_DieuTri.txtSoDienThoai.Text = dgv_DieuTri.Rows[i].Cells[4].Value.ToString();
+            edit_DieuTri.txtDiaChi.Text = dgv_DieuTri.Rows[i].Cells[5].Value.ToString();*/
+            /*MaDieuTri = t.TreatmentId,
+                            ChuanDoan = t.diagnose,
+                            PhuongPhapDieuTri = t.method,
+                            NgayDieuTri = t.dayOfTreatment,
+                            MaBacSi = t.StaffId,
+                            TenBacSi = s.fullName,
+                            MaBenhNhan = p.PatientId,
+                            TenBenhNhan = p.fullName*/
+            edit_DieuTri.txtChuanDoan.Text = dgv_DieuTri.Rows[i].Cells[1].Value.ToString();
+            edit_DieuTri.txtDieuTri.Text = dgv_DieuTri.Rows[i].Cells[2].Value.ToString();
+            edit_DieuTri.txtDiaChi.Text = dgv_DieuTri.Rows[i].Cells[5].Value.ToString();
+            edit_DieuTri.txtSoDienThoai.Text = dgv_DieuTri.Rows[i].Cells[3].Value.ToString();
+
         }
 
         private void dịchVụSựDụngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -261,6 +303,20 @@ namespace TEST
         }
 
         private void dgv_DieuTri_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+            
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            
+            edit_DieuTri.ShowDialog();
+            edit_DieuTri.click_close += Edit_DieuTri_click_close;
+            UserControl_DieuTri_Load(sender, e);
+        }
+
+        private void dgv_DieuTri_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
         }

@@ -69,6 +69,7 @@
             this.txtTenDichVu.Name = "txtTenDichVu";
             this.txtTenDichVu.Size = new System.Drawing.Size(280, 27);
             this.txtTenDichVu.TabIndex = 1;
+            this.txtTenDichVu.TextChanged += new System.EventHandler(this.txtTenDichVu_TextChanged);
             this.txtTenDichVu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenDichVu_KeyPress);
             // 
             // txtDichVu
@@ -222,6 +223,7 @@
             this.Name = "Frm_AddDichVu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_AddDichVu";
+            this.Load += new System.EventHandler(this.Frm_AddDichVu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).EndInit();

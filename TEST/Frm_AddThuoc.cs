@@ -35,7 +35,7 @@ namespace TEST
 
         private void Frm_AddThuoc_Load(object sender, EventArgs e)
         {
-
+            button1.Enabled = false;
         }
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
@@ -86,7 +86,15 @@ namespace TEST
 
         private void txtMaThuoc_TextChanged(object sender, EventArgs e)
         {
-           txtMaThuoc.CharacterCasing = CharacterCasing.Upper;
+            txtMaThuoc.CharacterCasing = CharacterCasing.Upper;
+            if (txtMaThuoc.Text.Length > 0 && txtTenThuoc.Text.Length > 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
         }
 
         private void txtTenThuoc_KeyPress(object sender, KeyPressEventArgs e)
@@ -106,6 +114,24 @@ namespace TEST
                 MessageBox.Show("Chỉ nhập số");
             }
            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtTenThuoc_TextChanged(object sender, EventArgs e)
+        {
+            txtTenThuoc.CharacterCasing = CharacterCasing.Upper;
+            if (txtMaThuoc.Text.Length > 0 && txtTenThuoc.Text.Length > 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
         }
     }
 }

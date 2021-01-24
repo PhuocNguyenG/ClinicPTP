@@ -75,6 +75,7 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtTenDichVu
             // 
@@ -83,6 +84,7 @@
             this.txtTenDichVu.Name = "txtTenDichVu";
             this.txtTenDichVu.Size = new System.Drawing.Size(280, 27);
             this.txtTenDichVu.TabIndex = 1;
+            this.txtTenDichVu.TextChanged += new System.EventHandler(this.txtTenDichVu_TextChanged);
             this.txtTenDichVu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenDichVu_KeyPress);
             // 
             // txtMaDichVu
@@ -174,6 +176,7 @@
             this.txtGiaTien.Name = "txtGiaTien";
             this.txtGiaTien.Size = new System.Drawing.Size(280, 27);
             this.txtGiaTien.TabIndex = 2;
+            this.txtGiaTien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaTien_KeyPress);
             // 
             // btnOk
             // 
