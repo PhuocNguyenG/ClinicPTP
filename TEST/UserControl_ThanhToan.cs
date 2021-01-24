@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Globalization;
 
 namespace TEST
 {
@@ -14,6 +15,8 @@ namespace TEST
             InitializeComponent();
         }
 
+        decimal total = 0;
+        
         private void UserControl_ThanhToan_Load(object sender, EventArgs e)
         {
             dateTime_ThanhToan.Value = DateTime.Now;
@@ -31,13 +34,57 @@ namespace TEST
                             DiaChi = s.address,
                             Email = s.email,
                             GhiChu = s.note
-
                         };
             dgv_BenhNhan.DataSource = query.Distinct();
-            
-
-
             Cons.date = dateTime_ThanhToan.Value;
+
+            try
+            {
+                
+
+                // Add các dịch vụ vào note
+                var queryServices = from i in Cons.dataContext.Treatments
+                                    join st in Cons.dataContext.ServiceTreatments on i.TreatmentId equals st.TreatmentId
+                                    join s in Cons.dataContext.Services on st.ServiceId equals s.ServiceId
+                                    where Cons.PatientId == i.PatientId && i.dayOfTreatment.Day == Cons.date.Day && i.dayOfTreatment.Month == Cons.date.Month && i.dayOfTreatment.Year == Cons.date.Year
+                                    select new
+                                    {
+                                        TenDichVu = s.nameService,
+                                        GiaThanh = s.price
+                                    };
+
+                //Add tổng tiền thuốc.
+                var queryMedicines = from pre in Cons.dataContext.Prescriptions
+                                     join pm in Cons.dataContext.PrescriptionMedicines on pre.PrescriptionId equals pm.PrescriptionId
+                                     join m in Cons.dataContext.Medicines on pm.MedicineId equals m.MedicineId
+                                     where Cons.PatientId == pre.PatientId && pre.createdDate.Value.Day == Cons.date.Day && pre.createdDate.Value.Month == Cons.date.Month && pre.createdDate.Value.Year == Cons.date.Year
+                                     select new
+                                     {
+                                         TenThuoc = m.nameMedicine,
+                                         SoLuong = pm.quantity,
+                                         DonGia = m.price,
+                                         GiaThanh = pm.quantity*m.price
+                                     };
+
+                foreach (var item in queryServices)
+                {
+                    total += item.GiaThanh.Value;
+
+                }
+            
+                foreach (var item in queryMedicines)
+                {
+                    
+                    total += item.GiaThanh.Value;
+                }
+
+                
+            }
+            catch (Exception)
+            {
+
+
+            }
 
         }
 
@@ -95,9 +142,7 @@ namespace TEST
         private void btn_Print_Click(object sender, EventArgs e)
         {
             //in hóa đơn đã tạo
-            var query = from r in Cons.dataContext.Receipts
-                        where Cons.PatientId == r.PatientId && dateTime_ThanhToan.Value.Day == r.receiptdate.Value.Day && dateTime_ThanhToan.Value.Month == r.receiptdate.Value.Day && dateTime_ThanhToan.Value.Year == r.receiptdate.Value.Year
-                        select r;
+           
             try
             {
                 PrintDialog _PrintDialog = new PrintDialog();
@@ -141,10 +186,21 @@ namespace TEST
                                          TenThuoc = m.nameMedicine,
                                          SoLuong = pm.quantity,
                                          DonGia = m.price,
-                                         GiaThanh = pm.quantity * m.quantity,
+                                         GiaThanh = pm.quantity * m.price,
                                      };
+                foreach (var item in queryServices)
+                {
+                    total += item.GiaThanh.Value;
 
-                decimal total = 0;
+                }
+
+                foreach (var item in queryMedicines)
+                {
+
+                    total += item.GiaThanh.Value;
+                }
+
+
                 Graphics graphic = e.Graphics;
                 Font font = new Font("Courier New", 12);
                 float FontHeight = font.GetHeight();
@@ -153,9 +209,9 @@ namespace TEST
                 int offset = 40;
 
                 graphic.DrawImage(Properties.Resources.hospital, 10, 10, 50, 50);
-                graphic.DrawString("PHÒNG KHÁM PTP", new Font("Courier New", 18), new SolidBrush(Color.Black), startX + 60, startY);
-                graphic.DrawString("THÀNH PHỐ HỒ CHÍ MINH", new Font("Courier New", 10), new SolidBrush(Color.Black), startX + 60, startY + 25);
-                graphic.DrawString("CLINICPTP.VN", new Font("Courier New", 12), new SolidBrush(Color.Black), startX + 60, startY + offset);
+                graphic.DrawString("PHÒNG KHÁM PTP", new Font("Courier New", 18), new SolidBrush(Color.Black), startX + 20, startY);
+                graphic.DrawString("HỒ CHÍ MINH", new Font("Courier New", 10), new SolidBrush(Color.Black), startX + 30, startY + 25);
+                graphic.DrawString("CLINICPTP.VN", new Font("Courier New", 12), new SolidBrush(Color.Black), startX + 30, startY + offset);
 
                 Pen blackPen = new Pen(Color.Black, 1);
                 PointF point1 = new PointF(startX, startY + offset + 20);
@@ -165,7 +221,7 @@ namespace TEST
                 offset = offset + (int)FontHeight; //make the spacing consistent
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent
 
-                graphic.DrawString("PHIẾU THU", new Font("Courier New", 22), new SolidBrush(Color.Black), startX + 105, startY + offset);
+                graphic.DrawString("PHIẾU THU", new Font("Courier New", 22), new SolidBrush(Color.Black), startX + 95, startY + offset);
 
 
                 offset = offset + (int)FontHeight; //make the spacing consistent
@@ -182,7 +238,6 @@ namespace TEST
 
                 foreach (var item in queryServices.ToList())
                 {
-                    total += decimal.Parse(item.GiaThanh.ToString());
                     graphic.DrawString(item.TenDichVu, font, new SolidBrush(Color.Black), startX, startY + offset);
                     graphic.DrawString(item.GiaThanh.ToString(), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
                     offset = offset + (int)FontHeight + 5; //make the spacing consistent              
@@ -200,7 +255,7 @@ namespace TEST
 
                 foreach (var item in queryMedicines.ToList())
                 {
-                    total += decimal.Parse(item.GiaThanh.ToString());
+
                     graphic.DrawString(item.TenThuoc + " x " + item.SoLuong, font, new SolidBrush(Color.Black), startX, startY + offset);
                     graphic.DrawString((decimal.Parse(item.SoLuong.ToString()) * item.DonGia).ToString(), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
                     offset = offset + (int)FontHeight + 5; //make the spacing consistent              
@@ -211,15 +266,18 @@ namespace TEST
 
 
                 graphic.DrawString("TỔNG TIỀN TRẢ ", new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(total), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(total), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("TIỀN MẶT ", font, new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(0), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(0), font, new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
-                graphic.DrawString("TIỀN TRẢ ", font, new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(_DoiSoSangDonViTienTe(0), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString("TIỀN THỪA ", font, new SolidBrush(Color.Black), startX, startY + offset);
+                graphic.DrawString(_DoiSoSangDonViTienTe(0), font, new SolidBrush(Color.Black), startX + 210, startY + offset);
+                graphic.DrawString(" VNĐ", font, new SolidBrush(Color.Black), startX + 300, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
 
@@ -229,7 +287,7 @@ namespace TEST
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent    
 
-                graphic.DrawString(" CẢM ƠN BẠN ĐÃ GHÉ THĂM!,", font, new SolidBrush(Color.Black), startX, startY + offset);
+                graphic.DrawString(" CẢM ƠN BẠN ĐÃ GHÉ THĂM!,", font, new SolidBrush(Color.Black), startX + 10, startY + offset);
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("HI VỌNG BẠN SẼ GHÉ THĂM LẠI!", font, new SolidBrush(Color.Black), startX, startY + offset);
             }
@@ -242,6 +300,7 @@ namespace TEST
         }
         public static string _DoiSoSangDonViTienTe(object _object)
         {
+            var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
             try
             {
                 if (_object.ToString().Trim().Length == 0)
@@ -249,18 +308,18 @@ namespace TEST
 
                 if (_object.ToString() == "0")
                 {
-                    return "0,000";
+                    return "0";
                 }
 
-                decimal dThanhTien = Convert.ToDecimal(_object);
-                string strThanhTien = string.Format("{0:#,#.}", dThanhTien);
+                Decimal dThanhTien = Convert.ToDecimal(_object);
+                string strThanhTien = string.Format("{0:C0}", _object);
                 return strThanhTien;
             }
             catch (Exception)
             {
 
             }
-            return "0,000";
+            return "0";
         }
 
         public void Resize_L()

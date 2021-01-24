@@ -49,7 +49,7 @@ namespace TEST
                                          TenThuoc = m.nameMedicine,
                                          SoLuong = pm.quantity,
                                          DonGia = m.price,
-                                         GiaThanh = pm.quantity*m.price,
+                                         GiaThanh = pm.quantity*m.price
                                      };
 
 
@@ -57,7 +57,7 @@ namespace TEST
                 
 
                 txtNote.Text = "Danh sách dịch vụ\r\n";
-
+                           
                 foreach (var item in queryServices)
                 {
                     total += item.GiaThanh.Value;
